@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Auto Skip Ad</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      width: 264px;
+      margin: 0;
+      padding: 16px;
+      background: #0f0f0f;
+      color: #f1f1f1;
+      font: 13px/1.5 "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    h1 {
+      font-size: 15px;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2eba2e;
+    }
+    .dot.off { background: #777; }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      background: #1f1f1f;
+      border: 1px solid #2f2f2f;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: default;
+    }
+    .row.has-toggle { cursor: pointer; }
+    .count { font-weight: 700; font-size: 15px; color: #ff4e45; }
+    .switch { position: relative; display: inline-block; width: 34px; height: 19px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      background: #3d3d3d;
+      border-radius: 19px;
+      transition: background 0.15s;
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 2.5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s;
+    }
+    input:checked + .slider { background: #cc0000; }
+    input:checked + .slider::before { transform: translateX(15px); }
+    .note { margin-top: 12px; color: #9a9a9a; font-size: 11.5px; }
+  </style>
+</head>
+<body>
+  <h1><span class="dot" id="statusDot"></span>Auto Skip Ad</h1>
+
+  <label class="row has-toggle">
+    <span>Enabled</span>
+    <span class="switch">
+      <input type="checkbox" id="toggle" />
+      <span class="slider"></span>
+    </span>
+  </label>
+
+  <div class="row">
+    <span>Ads skipped</span>
+    <span class="count" id="count">0</span>
+  </div>
+
+  <p class="note">
+    Clicks YouTube's own "Skip Ad" button the moment it's available.
+    Ads still play until YouTube allows skipping &mdash; nothing is blocked or bypassed.
+  </p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
